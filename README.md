@@ -1,2 +1,2 @@
 # CapstoneApp
-https://travis-ci.org/zackhillman/CapstoneApp.svg?branch=master
+[![Build Status](https://travis-ci.org/zackhillman/CapstoneApp.svg?branch=master)](https://travis-ci.org/zackhillman/CapstoneApp)
