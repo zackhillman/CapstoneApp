@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="nqueue.wa.ma.edu.tictactoe.MainActivity"
-    android:background="@drawable/lined"
+    tools:context="edu.ma.wa.nqueue.capstoneapp.MainActivity"
+
     >
 
     <RelativeLayout
