@@ -22,13 +22,11 @@ public class MainActivity extends AppCompatActivity {
 
         if((Button)v == Exercises){
 
-        }
-        else if((Button)v == findFriends){
+        }else if((Button)v == findFriends){
 
-        }
-        else if((Button)v == Options){
+        }else if((Button)v == Options) {
 
-        if((Button) v == Exercises){
+        }else if((Button) v == Exercises){
 
         }else if((Button) v == findFriends){
 
