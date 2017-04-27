@@ -1,8 +1,5 @@
 package edu.ma.wa.nqueue.capstoneapp;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -22,7 +19,7 @@ public class ExerciseVid extends YouTubeBaseActivity implements YouTubePlayer.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_exercise_vid);
         video = getIntent().getExtras().getString("video");
         youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
         youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
@@ -31,7 +28,7 @@ public class ExerciseVid extends YouTubeBaseActivity implements YouTubePlayer.On
     @Override
     public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean wasRestored) {
         if (!wasRestored) {
-            player.cueVideo(video);
+            player.cueVideo("dQw4w9WgXcQ");
         }
     }
 
