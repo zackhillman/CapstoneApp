@@ -15,6 +15,7 @@
         android:typeface="serif"
         android:textColor="#00FF00"
         android:textSize="30sp"
+        android:onClick="buttonClicked"
 
         />
 
@@ -27,7 +28,8 @@
         android:text="Exercise 2"
         android:typeface="serif"
         android:textColor="#00FF00"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:onClick="buttonClicked"/>
 
     <Button
         style="@style/Widget.AppCompat.Button.Borderless"
@@ -38,5 +40,6 @@
         android:text="Exercise 3"
         android:typeface="serif"
         android:textColor="#00FF00"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        />
 </LinearLayout>
