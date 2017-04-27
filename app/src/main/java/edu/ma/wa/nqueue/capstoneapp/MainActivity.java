@@ -1,9 +1,6 @@
 package edu.ma.wa.nqueue.capstoneapp;
 
-<<<<<<< HEAD
-=======
 import android.content.Intent;
->>>>>>> tahabranch
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buttonClicked(View v){
-<<<<<<< HEAD
+
         if((Button)v == Exercises){
 
         }
@@ -30,13 +27,13 @@ public class MainActivity extends AppCompatActivity {
 
         }
         else if((Button)v == Options){
-=======
+
         if((Button) v == Exercises){
 
         }else if((Button) v == findFriends){
 
         }else if((Button) v == Options) {
->>>>>>> tahabranch
+
 
         }
     }
