@@ -42,7 +42,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="GYM APP"
-                android: android:typeface="serif"
+                android:typeface="serif"
                 android:textColor="#FF0099CC"
                 android:textSize="48sp"
                 app:layout_constraintBottom_toBottomOf="parent"
