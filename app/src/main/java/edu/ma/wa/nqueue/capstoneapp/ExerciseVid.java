@@ -17,13 +17,13 @@ public class ExerciseVid extends YouTubeBaseActivity implements YouTubePlayer.On
 
     private static final int RECOVERY_REQUEST = 1;
     private YouTubePlayerView youTubeView;
-    private String video = "dQw4w9WgXcQ" ;
+    private String video;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        video = getIntent().getExtras().getString("video");
         youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
         youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
     }
