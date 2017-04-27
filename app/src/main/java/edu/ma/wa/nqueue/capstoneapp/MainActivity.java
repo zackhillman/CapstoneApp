@@ -32,6 +32,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        init();
+        Typeface title = Typeface.createFromAsset(getAssets(), "PWPerspective.ttf");
+        Typeface buttons = Typeface.createFromAsset(getAssets(), "Cheveuxdange.ttf");
+        TextView titleview = (TextView)findViewById(R.id.textviewtitle);
+        TextView buttonview = (TextView)findViewById(R.id.excersise);
+        TextView button2view = (TextView)findViewById(R.id.friends);
+        TextView button3view = (TextView)findViewById(R.id.options);
+        titleview.setTypeface(title);
+        buttonview.setTypeface(buttons);
+        button2view.setTypeface(buttons);
+        button3view.setTypeface(buttons);
     }
 }
