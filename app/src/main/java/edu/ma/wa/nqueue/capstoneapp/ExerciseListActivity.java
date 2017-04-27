@@ -13,9 +13,9 @@ public class ExerciseListActivity extends AppCompatActivity {
     public Button ex1, ex2, ex3;
 
     public void init(){
-        ex1 = (Button)findViewById(R.id.excersise);
-        ex2 = (Button)findViewById(R.id.friends);
-        ex3 = (Button)findViewById(R.id.options);
+        ex1 = (Button)findViewById(R.id.exercise1);
+        ex2 = (Button)findViewById(R.id.exercise2);
+        ex3 = (Button)findViewById(R.id.exercise3);
     }
 
     public void buttonClicked(View v) {
