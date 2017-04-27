@@ -33,3 +33,5 @@ script:
 #   - ./gradlew build connectedCheck
 #language: java
 #script: gradle test jacocoTestReport 
+notifications:
+  slack: wacapstone2017:BuJoGdeWRSsusWRgDY7p4o8F
