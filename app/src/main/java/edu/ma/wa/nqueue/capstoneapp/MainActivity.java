@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     public Button Exercises, findFriends, Options;
 
     public void init(){
-        Exercises = (Button)findViewById(R.id.excersise);
+        Exercises = (Button)findViewById(R.id.exercise);
         findFriends = (Button)findViewById(R.id.friends);
         Options = (Button)findViewById(R.id.options);
     }
@@ -25,13 +25,6 @@ public class MainActivity extends AppCompatActivity {
         }else if((Button)v == findFriends){
 
         }else if((Button)v == Options) {
-
-        }else if((Button) v == Exercises){
-
-        }else if((Button) v == findFriends){
-
-        }else if((Button) v == Options) {
-
 
         }
     }
