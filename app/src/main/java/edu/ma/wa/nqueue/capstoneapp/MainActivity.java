@@ -19,15 +19,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buttonClicked(View v){
-
         if((Button)v == Exercises){
-
+            Intent next = new Intent(MainActivity.this, ListExercise.class);
+            startActivity(next);
         }else if((Button)v == findFriends){
 
         }else if((Button)v == Options) {
-            Intent next = new Intent(MainActivity.this, ExerciseVid.class);
-            next.putExtra("Video","dQw4w9WgXcQ");
-            startActivity(next);
+
         }
     }
 
