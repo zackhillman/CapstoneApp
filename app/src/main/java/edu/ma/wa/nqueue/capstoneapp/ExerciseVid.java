@@ -15,7 +15,6 @@ public class ExerciseVid extends YouTubeBaseActivity implements YouTubePlayer.On
 
     private static final int RECOVERY_REQUEST = 1;
     private YouTubePlayerView youTubeView;
-    private VideoData video;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +28,7 @@ public class ExerciseVid extends YouTubeBaseActivity implements YouTubePlayer.On
     @Override
     public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean wasRestored) {
         if (!wasRestored) {
-            player.cueVideo(video.getVideo());
+            
         }
     }
 
