@@ -13,14 +13,24 @@ public class VideoData {
         videolink = vid;
     }
 
+    public void setDescription(String desc){
+        description = desc;
+    }
 
     public String getDescription(){
         return description;
+    }
+
+    public void setVideo(String vid){
+        videolink = vid;
     }
 
     public String getVideo(){
         return videolink;
     }
 
+    public VideoData getVideoObject(){
+        return this;
+    }
 
 }
