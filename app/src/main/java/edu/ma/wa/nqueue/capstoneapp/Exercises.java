@@ -6,23 +6,32 @@ import java.util.HashMap;
 
 public class Exercises {
 
-    public static HashMap list;
+    public Exercise[] list;
 
     public Exercises(){
-        list = new HashMap();
-        String[] str = new String[2];
-        str[1] = "Squats are done by sitting back in a chair with the knees at a 90 degree angle.";
-        str[2] = "https//www.google.com";
-        list.put(str,1);
-        str[1] = "Push ups are done by starting with hands on the ground. Lower the body until the arms are at a 90 degree angle. Extend arms.";
-        str[2] = "https//www.google.com";
-        list.put(str,2);
-        str[1] = "Do the workout.";
-        str[2] = "https//www.google.com";
-        list.put(str,3);
-    }
+        list = new Exercise[2];
+        Exercise ex = new Exercise("Squats are done by sitting back in a chair with the knees at a 90 degree angle.","https//www.google.com");
+        list[0]=ex;
+        ex = new Exercise("Push ups are done by starting with hands on the ground. Lower the body until the arms are at a 90 degree angle. Extend arms.","https//www.google.com");
+        list[1]=ex;
+        ex = new Exercise("Do the workout.","https//www.google.com");
+        list[2]=ex;}
 
-    public String[] getExercise(int i){
-        return (String[])list.get(i);
+    public Exercise getExercise(int i){
+        return list[i];}
+
+    public class Exercise{
+        private String instruction;
+        private String vidLink;
+
+        public Exercise(String i,String v){
+            instruction = i;
+            vidLink = v;}
+
+        public String getIntruction(){
+            return instruction;}
+
+        public String getLink(){
+            return vidLink;}
     }
 }
