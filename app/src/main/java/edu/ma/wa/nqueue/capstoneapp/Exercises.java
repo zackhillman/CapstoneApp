@@ -6,32 +6,15 @@ import java.util.HashMap;
 
 public class Exercises {
 
-    public Exercise[] list;
+    public static String[] tutList = new String[]{"Squats are done by sitting back in a chair with the knees at a 90 degree angle.", "Push ups are done by starting with hands on the ground. Lower the body until the arms are at a 90 degree angle. Extend arms.", "Do the workout."};
+    public static String[]  linkList = new String[]{"2LeOH9AGJQM", "Qo3fT0xPeHs", "dQw4w9WgXcQ"};
 
-    public Exercises(){
-        list = new Exercise[2];
-        Exercise ex = new Exercise("Squats are done by sitting back in a chair with the knees at a 90 degree angle.","https//www.google.com");
-        list[0]=ex;
-        ex = new Exercise("Push ups are done by starting with hands on the ground. Lower the body until the arms are at a 90 degree angle. Extend arms.","https//www.google.com");
-        list[1]=ex;
-        ex = new Exercise("Do the workout.","https//www.google.com");
-        list[2]=ex;}
 
-    public Exercise getExercise(int i){
-        return list[i];}
+    public Exercises() {
 
-    public class Exercise{
-        private String instruction;
-        private String vidLink;
-
-        public Exercise(String i,String v){
-            instruction = i;
-            vidLink = v;}
-
-        public String getIntruction(){
-            return instruction;}
-
-        public String getLink(){
-            return vidLink;}
     }
+
+
+
+
 }

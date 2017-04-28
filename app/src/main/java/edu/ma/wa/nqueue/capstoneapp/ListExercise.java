@@ -20,15 +20,15 @@ public class ListExercise extends AppCompatActivity {
     public void buttonClicked(View v){
         if((Button)v == Exe1){
             Intent next = new Intent(ListExercise.this, ExerciseVid.class);
-            next.putExtra("Video","2LeOH9AGJQM");
+            next.putExtra("Video",0);
             startActivity(next);
         }else if((Button)v == Exe2){
             Intent next = new Intent(ListExercise.this, ExerciseVid.class);
-            next.putExtra("Video","Qo3fT0xPeHs");
+            next.putExtra("Video",1);
             startActivity(next);
         }else if((Button)v == Exe3) {
             Intent next = new Intent(ListExercise.this, ExerciseVid.class);
-            next.putExtra("Video","dQw4w9WgXcQ");
+            next.putExtra("Video",2);
             startActivity(next);
         }
     }
