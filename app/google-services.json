@@ -1,0 +1,86 @@
+{
+  "project_info": {
+    "project_number": "97534153526",
+    "firebase_url": "https://gym-app-2cb8b.firebaseio.com",
+    "project_id": "gym-app-2cb8b",
+    "storage_bucket": "gym-app-2cb8b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97534153526:android:0b3aa75d41005a94",
+        "android_client_info": {
+          "package_name": "com.gymapp.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "97534153526-8e2oqu04vj3clfmb0nmfr6gbleuiqaal.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSyFDH2QZR0VlCpHggcQnPWQTYqzHuy8o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97534153526:android:a43364d6afe73982",
+        "android_client_info": {
+          "package_name": "nqueue.wa.ma.edu.tictactoe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "97534153526-jejrc3uu9d3h5e9dj2dd8a7r3alajuu7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nqueue.wa.ma.edu.tictactoe",
+            "certificate_hash": "9206191a23bcfd76550839f746a32c7317b86aaf"
+          }
+        },
+        {
+          "client_id": "97534153526-8e2oqu04vj3clfmb0nmfr6gbleuiqaal.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSyFDH2QZR0VlCpHggcQnPWQTYqzHuy8o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "97534153526-8e2oqu04vj3clfmb0nmfr6gbleuiqaal.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
