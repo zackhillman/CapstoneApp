@@ -42,12 +42,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
 // Prepare the Interstitial Ad
-        interstitial = new InterstitialAd(MainActivity.this);
+        /*interstitial = new InterstitialAd(MainActivity.this);
 // Insert the Ad Unit ID
         interstitial.setAdUnitId(getString(R.string.admob_interstitial_id));
 

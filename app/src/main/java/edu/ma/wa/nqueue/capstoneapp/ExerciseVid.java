@@ -33,12 +33,12 @@ public class ExerciseVid extends YouTubeBaseActivity implements YouTubePlayer.On
         youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
         ((TextView)findViewById(R.id.textView)).setText(Exercises.tutList[exerciseNum]);
 
-        /*AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
         // Prepare the Interstitial Ad
-        interstitial = new InterstitialAd(ExerciseVid.this);
+        /*interstitial = new InterstitialAd(ExerciseVid.this);
 // Insert the Ad Unit ID
         interstitial.setAdUnitId(getString(R.string.admob_interstitial_id));
 
