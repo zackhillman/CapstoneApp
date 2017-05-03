@@ -33,7 +33,7 @@ public class ExerciseVid extends YouTubeBaseActivity implements YouTubePlayer.On
         youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
         ((TextView)findViewById(R.id.textView)).setText(Exercises.tutList[exerciseNum]);
 
-        AdView mAdView = (AdView) findViewById(R.id.adView);
+        /*AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
@@ -49,7 +49,7 @@ public class ExerciseVid extends YouTubeBaseActivity implements YouTubePlayer.On
                 // Call displayInterstitial() function
                 displayInterstitial();
             }
-        });
+        });*/
 
     }
     public void displayInterstitial() {

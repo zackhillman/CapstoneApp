@@ -43,7 +43,7 @@ public class ListExercise extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_exercise);
-        AdView mAdView = (AdView) findViewById(R.id.adView);
+        /*AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
@@ -59,7 +59,7 @@ public class ListExercise extends AppCompatActivity {
                 // Call displayInterstitial() function
                 displayInterstitial();
             }
-        });
+        });*/
         init();
     }
 
