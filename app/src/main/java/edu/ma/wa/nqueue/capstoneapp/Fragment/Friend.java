@@ -13,7 +13,7 @@ import edu.ma.wa.nqueue.capstoneapp.R;
  * Created by Josh on 5/5/2017.
  */
 
-public class Friends extends Fragment {
+public class Friend extends Fragment {
 
     @Nullable
     @Override
@@ -23,4 +23,3 @@ public class Friends extends Fragment {
     }
 
 }
-
