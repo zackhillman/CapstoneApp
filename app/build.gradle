@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "nqueue.wa.ma.edu.tictactoe"
+        applicationId "nqueue.wa.ma.edu.capstoneapp"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
