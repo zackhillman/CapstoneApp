@@ -11,6 +11,12 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
+import edu.ma.wa.nqueue.capstoneapp.Fragment.About;
+import edu.ma.wa.nqueue.capstoneapp.Fragment.Exercise;
+import edu.ma.wa.nqueue.capstoneapp.Fragment.Friends;
+import edu.ma.wa.nqueue.capstoneapp.Fragment.Logs;
+import edu.ma.wa.nqueue.capstoneapp.Fragment.Profile;
+
 
 public class MainActivity extends AppCompatActivity {
 
