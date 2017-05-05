@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
         }else if((Button)v == findFriends){
 
         }else if((Button)v == Options) {
-
+            Intent next = new Intent(MainActivity.this, Calendar.class);
+            startActivity(next);
         }
     }
 
