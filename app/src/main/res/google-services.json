@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "344455737031",
+    "firebase_url": "https://gym-app-50090.firebaseio.com",
+    "project_id": "gym-app-50090",
+    "storage_bucket": "gym-app-50090.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:344455737031:android:dff9c32c3925431a",
+        "android_client_info": {
+          "package_name": "com.flexfit.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "344455737031-1q983r8bo52s0dam9r32rmle3a59erho.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwMs7RIozyfyyH1O4CNm0v9JAYcEnBKro"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

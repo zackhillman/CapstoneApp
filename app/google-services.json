@@ -80,6 +80,50 @@
           "status": 2
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97534153526:android:98a21f56d8fe77b9",
+        "android_client_info": {
+          "package_name": "nqueue.wa.ma.edu.capstoneapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "97534153526-a40ec1olpdsgvhc074lfd94adi4t08gt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nqueue.wa.ma.edu.capstoneapp",
+            "certificate_hash": "9206191a23bcfd76550839f746a32c7317b86aaf"
+          }
+        },
+        {
+          "client_id": "97534153526-8e2oqu04vj3clfmb0nmfr6gbleuiqaal.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSyFDH2QZR0VlCpHggcQnPWQTYqzHuy8o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "97534153526-8e2oqu04vj3clfmb0nmfr6gbleuiqaal.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
     }
   ],
   "configuration_version": "1"
