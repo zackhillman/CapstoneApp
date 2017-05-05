@@ -13,7 +13,7 @@ import com.roughike.bottombar.OnTabSelectListener;
 
 import edu.ma.wa.nqueue.capstoneapp.Fragment.About;
 import edu.ma.wa.nqueue.capstoneapp.Fragment.Exercise;
-import edu.ma.wa.nqueue.capstoneapp.Fragment.Friends;
+import edu.ma.wa.nqueue.capstoneapp.Fragment.Map;
 import edu.ma.wa.nqueue.capstoneapp.Fragment.Logs;
 import edu.ma.wa.nqueue.capstoneapp.Fragment.Profile;
 
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                     f = new Logs();
                 }
                 if (tabId == R.id.tab_friends) {
-                    f = new Friends();
+                    f = new Map();
                 }
                 if (tabId == R.id.tab_exercise) {
                     f = new Exercise();
