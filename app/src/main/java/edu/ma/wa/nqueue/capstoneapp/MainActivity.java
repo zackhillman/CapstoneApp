@@ -1,47 +1,52 @@
 package edu.ma.wa.nqueue.capstoneapp;
 
-import android.content.Intent;
-import android.graphics.Typeface;
+import android.support.annotation.IdRes;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.roughike.bottombar.BottomBar;
+import com.roughike.bottombar.OnTabSelectListener;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    public Button Exercises, findFriends, Options;
-    InterstitialAd mInterstitialAd;
+
     private InterstitialAd interstitial;
-
-    public void init(){
-        Exercises = (Button)findViewById(R.id.exercise);
-        findFriends = (Button)findViewById(R.id.friends);
-        Options = (Button)findViewById(R.id.options);
-    }
-
-    public void buttonClicked(View v){
-        if((Button)v == Exercises){
-            Intent next = new Intent(MainActivity.this, ListExercise.class);
-            startActivity(next);
-        }else if((Button)v == findFriends){
-
-        }else if((Button)v == Options) {
-
-        }
-    }
-
+    private BottomBar bar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().add(R.id.frame, new Profile()).commit();
+        }
+        bar = (BottomBar)findViewById(R.id.bottomBar);
+        bar.setOnTabSelectListener(new OnTabSelectListener() {
+            public void onTabSelected(@IdRes int tabId) {
+                Fragment f = new Fragment();
+                if (tabId == R.id.tab_profile) {
+                    f = new Profile();
+                }
+                if (tabId == R.id.tab_logs) {
+                    f = new Logs();
+                }
+                if (tabId == R.id.tab_friends) {
+                    f = new Friends();
+                }
+                if (tabId == R.id.tab_exercise) {
+                    f = new Exercise();
+                }
+                if (tabId == R.id.tab_about) {
+                    f = new About();
+                }
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
+            }
 
+        });
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -59,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 displayInterstitial();
             }
         });*/
-        init();
     }
 
     public void displayInterstitial() {

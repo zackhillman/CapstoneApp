@@ -19,7 +19,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".ExerciseVid" />
-        <activity android:name=".ListExercise"></activity>
     </application>
 
 </manifest>
