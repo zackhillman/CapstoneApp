@@ -1,4 +1,4 @@
-package edu.ma.wa.nqueue.capstoneapp;
+package edu.ma.wa.nqueue.capstoneapp.Fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,14 +13,13 @@ import edu.ma.wa.nqueue.capstoneapp.R;
  * Created by Josh on 5/5/2017.
  */
 
-public class Exercise extends Fragment {
+public class Logs extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_exercise,container,false);
+        View v = inflater.inflate(R.layout.fragment_logs,container,false);
         return v;
     }
 
 }
-
