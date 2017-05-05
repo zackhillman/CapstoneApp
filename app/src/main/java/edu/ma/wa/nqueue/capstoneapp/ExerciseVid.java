@@ -23,6 +23,7 @@ public class ExerciseVid extends YouTubeBaseActivity implements YouTubePlayer.On
     private int exerciseNum;
     InterstitialAd mInterstitialAd;
     private InterstitialAd interstitial;
+    private static final String YOUTUBE_API_KEY = "AIzaSyCd5PvfLc-NhemmBBkgQ9F3MAzQ-fV2gCQ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class ExerciseVid extends YouTubeBaseActivity implements YouTubePlayer.On
         setContentView(R.layout.activity_exercise_vid);
         exerciseNum = getIntent().getExtras().getInt("Video");
         youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
-        youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
+        youTubeView.initialize(YOUTUBE_API_KEY, this);
         ((TextView)findViewById(R.id.textView)).setText(Exercises.tutList[exerciseNum]);
 
         AdView mAdView = (AdView) findViewById(R.id.adView);
@@ -79,7 +80,7 @@ public class ExerciseVid extends YouTubeBaseActivity implements YouTubePlayer.On
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RECOVERY_REQUEST) {
-            getYouTubePlayerProvider().initialize(Config.YOUTUBE_API_KEY, this);
+            getYouTubePlayerProvider().initialize(YOUTUBE_API_KEY, this);
         }
     }
 
