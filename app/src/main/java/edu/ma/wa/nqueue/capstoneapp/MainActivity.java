@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StartAppSDK.init(this, "Your app Id", true);
-        StartAppAd.showSplash(this, savedInstanceState);
+        //StartAppSDK.init(this, "Your app Id", true);
+        //StartAppAd.showSplash(this, savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().add(R.id.frame, new Profile()).commit();
