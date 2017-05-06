@@ -1,4 +1,4 @@
-package edu.ma.wa.nqueue.capstoneapp.Fragment;
+package edu.ma.wa.nqueue.capstoneapp.Fragment.Maps;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.gigamole.navigationtabstrip.NavigationTabStrip;
+
 import edu.ma.wa.nqueue.capstoneapp.R;
 
 /**
@@ -23,7 +24,7 @@ public class Map extends Fragment {
         View v = inflater.inflate(R.layout.fragment_map,container,false);
         navbar = (NavigationTabStrip) v.findViewById(R.id.nts_nav);
         if (savedInstanceState == null) {
-            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.friendframe, new Profile()).commit();
+            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.friendframe, new Friend()).commit();
             navbar.setTabIndex(0, true);
         }
         navbar.setOnTabStripSelectedIndexListener(new NavigationTabStrip.OnTabStripSelectedIndexListener() {

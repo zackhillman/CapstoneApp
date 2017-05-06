@@ -1,4 +1,4 @@
-package edu.ma.wa.nqueue.capstoneapp.Fragment;
+package edu.ma.wa.nqueue.capstoneapp.Fragment.Maps;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
