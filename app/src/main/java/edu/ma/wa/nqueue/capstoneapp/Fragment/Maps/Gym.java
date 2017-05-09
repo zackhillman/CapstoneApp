@@ -1,7 +1,14 @@
 package edu.ma.wa.nqueue.capstoneapp.Fragment.Maps;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
@@ -24,12 +32,13 @@ import edu.ma.wa.nqueue.capstoneapp.R;
  * Created by Josh on 5/5/2017.
  */
 
-public class Gym extends Fragment implements OnMapReadyCallback{
+public class Gym extends Fragment implements OnMapReadyCallback, LocationListener{
 
     public static final String MAPAPI = "AIzaSyD7iGEodKADPTBvzkY2g8a4xhpUsPWj_XQ";
     private GoogleMap mGoogleMap;
-    MapView mMapView;
-    View mView;
+    private MapView mMapView;
+    private View mView;
+
 
     @Nullable
     @Override
@@ -39,32 +48,77 @@ public class Gym extends Fragment implements OnMapReadyCallback{
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState ){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState){
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         mMapView = (MapView) mView.findViewById(R.id.map);
-        if(mMapView != null){
+        if (mMapView != null) {
             mMapView.onCreate(null);
             mMapView.onResume();
             mMapView.getMapAsync(this);
         }
+
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap){
+    public void onMapReady(GoogleMap googleMap) {
         MapsInitializer.initialize(getContext());
 
         mGoogleMap = googleMap;
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(40.689247, -74.044502)).title("Statue of Liberty").snippet("I hope to go here someday"));
+        LatLng boost = new LatLng(42.570456, -71.419234);
 
-        CameraPosition Liberty = CameraPosition.builder().target(new LatLng(40.689247, -74.044502)).zoom(16).bearing(0).tilt(45).build();
-        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Liberty));
+        googleMap.addMarker(new MarkerOptions().position(boost).title("Boost Fitness"));
+
+
+
+        //CameraPosition Liberty = CameraPosition.builder().target(new LatLng(40.689247, -74.044502)).zoom(16).bearing(0).tilt(45).build();
+        //googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Liberty));
+
+        if(ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            return;
+        }
+        googleMap.setMyLocationEnabled(true);
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+        // Getting latitude of the current location
+        double latitude = location.getLatitude();
+
+        // Getting longitude of the current location
+        double longitude = location.getLongitude();
+
+        // Creating a LatLng object for the current location
+        LatLng latLng = new LatLng(latitude, longitude);
+
+        // Showing the current location in Google Map
+        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+
+        // Zoom in the Google Map
+        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
     }
 }
