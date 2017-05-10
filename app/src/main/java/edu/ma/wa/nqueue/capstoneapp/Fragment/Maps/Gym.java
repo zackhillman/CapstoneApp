@@ -7,6 +7,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import edu.ma.wa.nqueue.capstoneapp.R;
@@ -37,6 +39,8 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
     private GoogleMap mGoogleMap;
     private MapView mMapView;
     private View mView;
+
+    private LatLng currentLocation;
 
 
     @Nullable
@@ -71,6 +75,10 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
         mGoogleMap = googleMap;
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
+
+
+        currentLocation = new LatLng(42.570456, -71.419234);
+
         LatLng boost = new LatLng(42.570456, -71.419234);
         LatLng koko = new LatLng(42.566434, -71.422394);
         LatLng westfit = new LatLng(42.578005, -71.396997);
@@ -86,16 +94,25 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
         CameraPosition camera = CameraPosition.builder().target(koko).zoom(16).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
 
-        if(ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+       if(ActivityCompat.checkSelfPermission(this.getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, PackageManager.PERMISSION_GRANTED); // if the permission wasn't granted so ask for permission
+            return;
+        }
+        if(ActivityCompat.checkSelfPermission(this.getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PackageManager.PERMISSION_GRANTED);
             return;
         }
         googleMap.setMyLocationEnabled(true);
+
     }
 
     @Override
     public void onLocationChanged(Location location) {
-
-
+        double latitude = location.getLatitude();
+        double longitude = location.getLongitude();
+        currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+        Marker marker;
+        marker = mGoogleMap.addMarker(new MarkerOptions().position(currentLocation).title("Current Location"));
 
     }
 
