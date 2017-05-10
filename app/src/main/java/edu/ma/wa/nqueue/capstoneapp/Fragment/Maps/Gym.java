@@ -73,13 +73,20 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
         LatLng boost = new LatLng(42.570456, -71.419234);
+        LatLng koko = new LatLng(42.566434, -71.422394);
+        LatLng westfit = new LatLng(42.578005, -71.396997);
+        LatLng regency = new LatLng(42.563796, -71.430486);
+        LatLng fitnessTogether = new LatLng(42.554261, -71.447419);
+
 
         googleMap.addMarker(new MarkerOptions().position(boost).title("Boost Fitness"));
+        googleMap.addMarker(new MarkerOptions().position(koko).title("Koko FitClub"));
+        googleMap.addMarker(new MarkerOptions().position(westfit).title("WestFit"));
+        googleMap.addMarker(new MarkerOptions().position(regency).title("Westford Regency"));
+        googleMap.addMarker(new MarkerOptions().position(fitnessTogether).title("Fitness Together"));
 
-
-
-        //CameraPosition Liberty = CameraPosition.builder().target(new LatLng(40.689247, -74.044502)).zoom(16).bearing(0).tilt(45).build();
-        //googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Liberty));
+        CameraPosition camera = CameraPosition.builder().target(koko).zoom(16).bearing(0).tilt(45).build();
+        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
 
         if(ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             return;
@@ -90,20 +97,7 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
     @Override
     public void onLocationChanged(Location location) {
 
-        // Getting latitude of the current location
-        double latitude = location.getLatitude();
 
-        // Getting longitude of the current location
-        double longitude = location.getLongitude();
-
-        // Creating a LatLng object for the current location
-        LatLng latLng = new LatLng(latitude, longitude);
-
-        // Showing the current location in Google Map
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-
-        // Zoom in the Google Map
-        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
 
     }
 
