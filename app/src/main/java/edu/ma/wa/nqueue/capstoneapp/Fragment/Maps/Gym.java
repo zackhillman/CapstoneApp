@@ -77,7 +77,6 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
         LatLng regency = new LatLng(42.563796, -71.430486);
         LatLng fitnessTogether = new LatLng(42.554261, -71.447419);
 
-
         googleMap.addMarker(new MarkerOptions().position(boost).title("Boost Fitness"));
         googleMap.addMarker(new MarkerOptions().position(koko).title("Koko FitClub"));
         googleMap.addMarker(new MarkerOptions().position(westfit).title("WestFit"));
