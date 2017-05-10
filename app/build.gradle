@@ -44,6 +44,8 @@ dependencies {
     compile 'com.github.devlight.navigationtabstrip:navigationtabstrip:1.0.4'
     compile 'com.google.android.gms:play-services-maps:10.2.1'
     testCompile 'junit:junit:4.12'
+    compile files('libs/StartAppInApp-3.6.1.jar')
+    compile 'com.google.android.gms:play-services-maps:10.2.1'
 }
 configurations.all {
     resolutionStrategy.eachDependency { DependencyResolveDetails details ->

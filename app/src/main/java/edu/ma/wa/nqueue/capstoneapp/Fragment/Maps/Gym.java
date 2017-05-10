@@ -102,8 +102,8 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PackageManager.PERMISSION_GRANTED);
             return;
         }
-        googleMap.setMyLocationEnabled(true);
 
+        googleMap.setMyLocationEnabled(true);
     }
 
     @Override
