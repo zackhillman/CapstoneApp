@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import edu.ma.wa.nqueue.capstoneapp.Fragment.Maps.Friend;
+import edu.ma.wa.nqueue.capstoneapp.Fragment.Maps.Gym;
 import edu.ma.wa.nqueue.capstoneapp.R;
 import edu.ma.wa.nqueue.capstoneapp.exerciselistAdapter;
 
@@ -31,12 +33,17 @@ public class Exercise extends Fragment {
         listview.setOnItemClickListener(
                 new AdapterView.OnItemClickListener(){
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                        String work = String.valueOf(parent.getItemAtPosition(position));
-
+                        Fragment f = new Fragment();
+                        if (position == 0) {
+                            f = new video();
+                        }
+                        if (position == 1) {
+                            f = new video();
+                        }
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
                     }
                 }
         );
-
         return v;
     }
 
