@@ -114,6 +114,9 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
         Marker marker;
         marker = mGoogleMap.addMarker(new MarkerOptions().position(currentLocation).title("Current Location"));
 
+        CameraPosition camera = CameraPosition.builder().target(currentLocation).zoom(16).bearing(0).tilt(45).build();
+        mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
+
     }
 
     @Override
