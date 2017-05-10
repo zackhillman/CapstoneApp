@@ -80,8 +80,6 @@
           "status": 2
         }
       }
-<<<<<<< HEAD
-=======
     },
     {
       "client_info": {
@@ -126,7 +124,6 @@
           "status": 2
         }
       }
->>>>>>> master
     }
   ],
   "configuration_version": "1"
