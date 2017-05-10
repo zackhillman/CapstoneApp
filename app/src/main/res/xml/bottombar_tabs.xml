@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_profile"
+        icon="@drawable/ic_friends"
+        title="Profile" />
+    <tab
+        id="@+id/tab_logs"
+        icon="@drawable/ic_event_note_black_24dp"
+        title="Logs" />
+    <tab
+        id="@+id/tab_friends"
+        icon="@drawable/ic_nearby"
+        title="Map" />
+    <tab
+        id="@+id/tab_exercise"
+        icon="@drawable/ic_dumbbell"
+        title="Exercises" />
+    <tab
+        id="@+id/tab_about"
+        icon="@drawable/ic_info_black_24dp"
+        title="About" />
+</tabs>
