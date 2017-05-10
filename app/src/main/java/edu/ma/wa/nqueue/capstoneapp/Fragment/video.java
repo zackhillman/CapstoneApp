@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -15,6 +16,8 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerFragment;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 import com.google.android.youtube.player.YouTubePlayerView;
+
+import org.w3c.dom.Text;
 
 import edu.ma.wa.nqueue.capstoneapp.Exercises;
 import edu.ma.wa.nqueue.capstoneapp.R;
@@ -41,14 +44,15 @@ public class video extends Fragment implements YouTubePlayer.OnInitializedListen
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_fragment, youtubePlayerFragment);
         fragmentTransaction.commit();
-
+        TextView descp = (TextView) v.findViewById(R.id.descpt);
+        descp.setText(Exercises.tutList[exerciseNum]);
         return v;
     }
 
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean wasRestored) {
         if (!wasRestored) {
-           // player.cueVideo(Exercises.linkList[exerciseNum]);
+            player.cueVideo(Exercises.linkList[exerciseNum]);
         }
     }
 
@@ -60,6 +64,10 @@ public class video extends Fragment implements YouTubePlayer.OnInitializedListen
             String error = String.format(getString(R.string.player_error), errorReason.toString());
             Toast.makeText(getActivity(), error, Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void setVideo(int i){
+        exerciseNum = i;
     }
 
 

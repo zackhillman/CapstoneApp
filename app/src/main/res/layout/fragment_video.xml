@@ -4,27 +4,28 @@
     android:layout_height="match_parent"
     >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="1">
-
-        <FrameLayout
-            android:id="@+id/frame_fragment"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="216dp"
-            android:layout_weight="0.01">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
 
-        </FrameLayout>
+            <FrameLayout
+                android:id="@+id/frame_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="216dp"
+                android:layout_weight="0.01">
 
-        <TextView
-            android:id="@+id/descpt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Stuff" />
+            </FrameLayout>
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/descpt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Stuff" />
+
+        </LinearLayout>
+
 
 
 </FrameLayout>

@@ -1,5 +1,7 @@
 package edu.ma.wa.nqueue.capstoneapp.Fragment;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,6 +23,23 @@ import edu.ma.wa.nqueue.capstoneapp.exerciselistAdapter;
 
 public class Exercise extends Fragment {
 
+
+    ExerciseVideoListener activityCommander;
+
+    public interface ExerciseVideoListener{
+        public void loadVideo(int i);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try{
+            activityCommander = (ExerciseVideoListener) context;
+        }catch(ClassCastException e){
+            throw new ClassCastException(context.toString());
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,18 +48,13 @@ public class Exercise extends Fragment {
         ListAdapter adapt = new exerciselistAdapter(getActivity(), workout);
         ListView listview = (ListView) v.findViewById(R.id.list);
         listview.setAdapter(adapt);
-
         listview.setOnItemClickListener(
                 new AdapterView.OnItemClickListener(){
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                         Fragment f = new Fragment();
-                        if (position == 0) {
-                            f = new video();
-                        }
-                        if (position == 1) {
-                            f = new video();
-                        }
+                        f = new video();
                         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
+                        //activityCommander.loadVideo(position);
                     }
                 }
         );

@@ -19,9 +19,10 @@ import edu.ma.wa.nqueue.capstoneapp.Fragment.Exercise;
 import edu.ma.wa.nqueue.capstoneapp.Fragment.Maps.Map;
 import edu.ma.wa.nqueue.capstoneapp.Fragment.Logs;
 import edu.ma.wa.nqueue.capstoneapp.Fragment.Profile;
+import edu.ma.wa.nqueue.capstoneapp.Fragment.video;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Exercise.ExerciseVideoListener {
 
     private StartAppAd startAppAd = new StartAppAd(this);
     private InterstitialAd interstitial;
@@ -62,21 +63,13 @@ public class MainActivity extends AppCompatActivity {
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-
-// Prepare the Interstitial Ad
-        /*interstitial = new InterstitialAd(MainActivity.this);
-// Insert the Ad Unit ID
-        interstitial.setAdUnitId(getString(R.string.admob_interstitial_id));
-
-        interstitial.loadAd(adRequest);
-// Prepare an Interstitial Ad Listener
-        interstitial.setAdListener(new AdListener() {
-            public void onAdLoaded() {
-                // Call displayInterstitial() function
-                displayInterstitial();
-            }
-        });*/
     }
+
+    public void loadVideo(int i){
+        video vid = (video) getSupportFragmentManager().findFragmentById(R.id.frame);
+        vid.setVideo(i);
+    }
+
 
     public void displayInterstitial() {
 // If Ads are loaded, show Interstitial else show nothing.
