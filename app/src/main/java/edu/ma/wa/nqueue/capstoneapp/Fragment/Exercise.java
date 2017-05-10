@@ -6,8 +6,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import edu.ma.wa.nqueue.capstoneapp.R;
+import edu.ma.wa.nqueue.capstoneapp.exerciselistAdapter;
 
 /**
  * Created by Josh on 5/5/2017.
@@ -19,6 +23,20 @@ public class Exercise extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_exercise,container,false);
+        String[] workout = {"Preacher Curl", "Squats", "Dumbbell Bench Press"};
+        ListAdapter adapt = new exerciselistAdapter(getActivity(), workout);
+        ListView listview = (ListView) v.findViewById(R.id.list);
+        listview.setAdapter(adapt);
+
+        listview.setOnItemClickListener(
+                new AdapterView.OnItemClickListener(){
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                        String work = String.valueOf(parent.getItemAtPosition(position));
+
+                    }
+                }
+        );
+
         return v;
     }
 

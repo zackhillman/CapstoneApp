@@ -19,11 +19,5 @@ public class Exercises {
     public static String[]  linkList = new String[]{"DoCWeUBA0Gs", "t2b8UdqmlFs", "VmB1G1K7v94"};
 
 
-    public Exercises() {
-
-    }
-
-
-
 
 }
