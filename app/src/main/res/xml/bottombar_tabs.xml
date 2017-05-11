@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tabs>
     <tab
-        id="@+id/tab_profile"
-        icon="@drawable/ic_friends"
-        title="Profile" />
-    <tab
         id="@+id/tab_logs"
         icon="@drawable/ic_event_note_black_24dp"
         title="Logs" />
