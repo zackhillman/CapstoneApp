@@ -19,15 +19,15 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_height="291dp"
+                android:layout_weight="39212.84"
                 app:srcCompat="@drawable/homer" />
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="47209.98"
+                android:layout_weight="14618.79"
                 android:text="NQueue is a group of student programmers from Westford Academy created on the Capstone program. Our group consists of Andrew Hartnett, Zack Hillman, Andrew Markoski, Deren Singh, Taha Rangwala, Ben Pazienza, and Joshua Vasilevksy, with our fearless leader Newman Shee as NQueue's capstone advisor.\nFlex Fit is our final project for the Capstone experience." />
 
         </LinearLayout>
