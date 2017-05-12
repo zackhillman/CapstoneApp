@@ -48,47 +48,12 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
 
     private LatLng currentLocation;
     public static final String BASE_URL = "https://thawing-tundra-28436.herokuapp.com/services/";
-    Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
+
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        MyApiEndpointInterface apiService =
-                retrofit.create(MyApiEndpointInterface.class);
-
-
-        Call<ResponseBody> call = apiService.getLoc("all");
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                int statusCode = response.code();
-                ResponseBody user = response.body();
-                //Object mapper instance
-
-                Gson mapper = new Gson();
-                try {
-                    locs = mapper.fromJson(user.string(),MyLocation[].class);
-                    //         MyLocation l = mapper.readValue(user.string(), MyLocation.class);
-
-                } catch (Exception e) {
-
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.d("blah", "error");
-            }
-        });
 
         mView = inflater.inflate(R.layout.fragment_gym, container, false);
         return mView;
@@ -171,25 +136,6 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
 
         CameraPosition camera = CameraPosition.builder().target(currentLocation).zoom(16).bearing(0).tilt(45).build();
         mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
-        MyApiEndpointInterface apiService =
-                retrofit.create(MyApiEndpointInterface.class);
-
-        Call<ResponseBody> call2 = apiService.updateLocation(new MyLocation("test",currentLocation.latitude,currentLocation.longitude));
-        call2.enqueue(new Callback<ResponseBody>() {
-            @Override
-
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                int statusCode = response.code();
-                ResponseBody user = response.body();
-
-
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                // Log error here since request failed
-            }
-        });
     }
 
     @Override
