@@ -9,7 +9,7 @@ import edu.ma.wa.nqueue.capstoneapp.Fragment.Exercise;
 
 public class Exercises {
 
-    private static ExerciseStep preach = new ExerciseStep(new String[]{"step 1", "Step 2", "step 3", "Step 4", "step 5", "Step 6", "step 7", "Step 8"});
+    private static ExerciseStep preach = new ExerciseStep(new String[]{"step 1", "Step 2", "step 3", "Step 4", "step 5", "Step 6", "step 7"});
     private static ExerciseStep squat = new ExerciseStep(new String[]{"step 1", "Step 2"});
     private static ExerciseStep dumbbell = new ExerciseStep(new String[]{"step 1", "Step 2"});
 
