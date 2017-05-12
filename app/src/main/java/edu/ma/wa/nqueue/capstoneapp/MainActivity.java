@@ -30,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements Exercise.Exercise
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
+
         //StartAppSDK.init(this, "Your app Id", true);
         //StartAppAd.showSplash(this, savedInstanceState);
         setContentView(R.layout.activity_main);

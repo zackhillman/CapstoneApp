@@ -2,33 +2,37 @@ package edu.ma.wa.nqueue.capstoneapp.Fragment.Maps;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.LocationSource;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 
 import edu.ma.wa.nqueue.capstoneapp.R;
+import edu.ma.wa.nqueue.capstoneapp.Server.MyApiEndpointInterface;
+import edu.ma.wa.nqueue.capstoneapp.Server.MyLocation;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Josh on 5/5/2017.
@@ -40,19 +44,66 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
     private MapView mMapView;
     private View mView;
 
+    public MyLocation[] locs = null;
+
     private LatLng currentLocation;
+    public static final String BASE_URL = "https://thawing-tundra-28436.herokuapp.com/services/";
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        MyApiEndpointInterface apiService =
+                retrofit.create(MyApiEndpointInterface.class);
+
+
+        Call<ResponseBody> call = apiService.getLoc("all");
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                int statusCode = response.code();
+                ResponseBody user = response.body();
+                //Object mapper instance
+
+                Gson mapper = new Gson();
+                try {
+                    locs = mapper.fromJson(user.string(),MyLocation[].class);
+                    //         MyLocation l = mapper.readValue(user.string(), MyLocation.class);
+
+                } catch (Exception e) {
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.d("blah", "error");
+                // Log error here since request failed
+            }
+        });
+
         mView = inflater.inflate(R.layout.fragment_gym, container, false);
         return mView;
+
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
+
+
     }
 
     @Override
@@ -66,10 +117,15 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
             mMapView.getMapAsync(this);
         }
 
+
+
+
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
+
         MapsInitializer.initialize(getContext());
 
         mGoogleMap = googleMap;
@@ -85,14 +141,22 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
         LatLng regency = new LatLng(42.563796, -71.430486);
         LatLng fitnessTogether = new LatLng(42.554261, -71.447419);
 
+
+        if(locs!=null) {
+            for (int i = 0; i < locs.length; i++) {
+                LatLng pos = new LatLng(locs[i].getLongitude(), locs[i].getLatitude());
+                String title = locs[i].getName();
+                googleMap.addMarker(new MarkerOptions().position(pos).title(title));
+            }
+        }
+
         googleMap.addMarker(new MarkerOptions().position(boost).title("Boost Fitness"));
         googleMap.addMarker(new MarkerOptions().position(koko).title("Koko FitClub"));
         googleMap.addMarker(new MarkerOptions().position(westfit).title("WestFit"));
         googleMap.addMarker(new MarkerOptions().position(regency).title("Westford Regency"));
         googleMap.addMarker(new MarkerOptions().position(fitnessTogether).title("Fitness Together"));
 
-        CameraPosition camera = CameraPosition.builder().target(koko).zoom(16).bearing(0).tilt(45).build();
-        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
+
 
        if(ActivityCompat.checkSelfPermission(this.getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, PackageManager.PERMISSION_GRANTED); // if the permission wasn't granted so ask for permission
@@ -104,6 +168,11 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
         }
 
         googleMap.setMyLocationEnabled(true);
+
+        CameraPosition camera = CameraPosition.builder().target(currentLocation).zoom(16).bearing(0).tilt(45).build();
+        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
+
+
     }
 
     @Override
@@ -112,11 +181,29 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
         double longitude = location.getLongitude();
         currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
         Marker marker;
-        marker = mGoogleMap.addMarker(new MarkerOptions().position(currentLocation).title("Current Location"));
+        marker = mGoogleMap.addMarker(new MarkerOptions().position(currentLocation).title("Current MyLocation"));
 
         CameraPosition camera = CameraPosition.builder().target(currentLocation).zoom(16).bearing(0).tilt(45).build();
         mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
+        MyApiEndpointInterface apiService =
+                retrofit.create(MyApiEndpointInterface.class);
 
+        Call<ResponseBody> call2 = apiService.updateLocation(new MyLocation("test",currentLocation.latitude,currentLocation.longitude));
+        call2.enqueue(new Callback<ResponseBody>() {
+            @Override
+
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                int statusCode = response.code();
+                ResponseBody user = response.body();
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                // Log error here since request failed
+            }
+        });
     }
 
     @Override
