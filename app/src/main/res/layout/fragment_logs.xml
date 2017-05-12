@@ -4,9 +4,22 @@
     android:layout_height="match_parent"
     >
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Logs Fragment" />
+        android:orientation="vertical">
+
+        <CalendarView
+            android:id="@+id/calendar1"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"></CalendarView>
+
+        <TextView
+            android:id="@+id/EventText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Events" />
+    </LinearLayout>
+
 
 </FrameLayout>
