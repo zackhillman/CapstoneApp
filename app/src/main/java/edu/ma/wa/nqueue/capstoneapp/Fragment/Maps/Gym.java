@@ -91,7 +91,7 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
         googleMap.addMarker(new MarkerOptions().position(regency).title("Westford Regency"));
         googleMap.addMarker(new MarkerOptions().position(fitnessTogether).title("Fitness Together"));
 
-        CameraPosition camera = CameraPosition.builder().target(koko).zoom(16).bearing(0).tilt(45).build();
+        CameraPosition camera = CameraPosition.builder().target(currentLocation).zoom(16).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
 
        if(ActivityCompat.checkSelfPermission(this.getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
@@ -114,8 +114,8 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
         Marker marker;
         marker = mGoogleMap.addMarker(new MarkerOptions().position(currentLocation).title("Current Location"));
 
-        CameraPosition camera = CameraPosition.builder().target(currentLocation).zoom(16).bearing(0).tilt(45).build();
-        mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
+        //CameraPosition camera = CameraPosition.builder().target(currentLocation).zoom(16).bearing(0).tilt(45).build();
+        //mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
 
     }
 
