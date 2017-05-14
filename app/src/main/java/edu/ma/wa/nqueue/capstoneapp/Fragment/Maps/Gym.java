@@ -166,8 +166,23 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
         currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
-        Marker marker;
-        marker = mGoogleMap.addMarker(new MarkerOptions().position(currentLocation).title("Current MyLocation"));
+
+        StringBuilder sb = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+
+        mLatitude = latitude;
+        mLongitude = longitude;
+
+        System.out.println("LATITUDE: " + latitude + "LONGITUDE: " + mLongitude);
+        sb.append("location="+latitude+","+longitude);
+        sb.append("&radius=5000");
+        sb.append("&types="+mPlaceType);
+        sb.append("&sensor=true");
+        sb.append("&key=AIzaSyDOwxlkH52mv1OcoI7FlI999r7v7TYPFpg");
+
+        System.out.println("LOCATION HAS CHANGED");
+
+        PlacesTask placesTask = new PlacesTask();
+        placesTask.execute(sb.toString());
 
         CameraPosition camera = CameraPosition.builder().target(currentLocation).zoom(16).bearing(0).tilt(45).build();
         mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
