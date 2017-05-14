@@ -11,6 +11,8 @@ import android.widget.CalendarView.OnDateChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+
 import edu.ma.wa.nqueue.capstoneapp.R;
 
 /**
@@ -24,12 +26,21 @@ public class Logs extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_logs,container,false);
         CalendarView calendar = (CalendarView) v.findViewById(R.id.calendar1);
-        TextView eventText = (TextView)v.findViewById(R.id.EventText);
+        final TextView eventText = (TextView)v.findViewById(R.id.eventText);
+        final HashMap<String,String> eventMap = new HashMap<String,String>();
+        eventMap.put("5/15/2017","Test Event");
 
         calendar.setOnDateChangeListener(new OnDateChangeListener() {
              @Override
              public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
-                 Toast.makeText(getActivity().getApplicationContext(), day + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
+                 String dateString = (month+1)+"/"+day+"/"+year;
+                 Toast.makeText(getActivity().getApplicationContext(), dateString, Toast.LENGTH_LONG).show();
+                 if(eventMap.get(dateString)!=null){
+                     eventText.setText(eventMap.get(dateString));
+                 }
+                 else{
+                     eventText.setText("");
+                 }
              }
          });
         return v;

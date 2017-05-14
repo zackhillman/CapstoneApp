@@ -14,11 +14,23 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"></CalendarView>
 
-        <TextView
-            android:id="@+id/EventText"
+        <EditText
+            android:id="@+id/eventText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Events" />
+            android:layout_height="wrap_content"
+            android:paddingTop="50dp"
+            android:ems="10"
+            android:hint="Enter event here"
+            android:inputType="textPersonName"
+            android:text="" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save event" />
+
+
     </LinearLayout>
 
 
