@@ -13,12 +13,10 @@ import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 import com.startapp.android.publish.adsCommon.StartAppAd;
 import com.startapp.android.publish.adsCommon.StartAppSDK;
-
 import edu.ma.wa.nqueue.capstoneapp.Fragment.About;
 import edu.ma.wa.nqueue.capstoneapp.Fragment.Exercise;
 import edu.ma.wa.nqueue.capstoneapp.Fragment.Maps.Map;
 import edu.ma.wa.nqueue.capstoneapp.Fragment.Logs;
-import edu.ma.wa.nqueue.capstoneapp.Fragment.Profile;
 import edu.ma.wa.nqueue.capstoneapp.Fragment.video;
 
 
@@ -37,16 +35,14 @@ public class MainActivity extends AppCompatActivity implements Exercise.Exercise
         //StartAppSDK.init(this, "Your app Id", true);
         //StartAppAd.showSplash(this, savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().add(R.id.frame, new Profile()).commit();
-        }
         bar = (BottomBar)findViewById(R.id.bottomBar);
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().add(R.id.frame, new Exercise()).commit();
+            bar.setDefaultTab(R.id.tab_exercise);
+        }
         bar.setOnTabSelectListener(new OnTabSelectListener() {
             public void onTabSelected(@IdRes int tabId) {
                 Fragment f = new Fragment();
-                if (tabId == R.id.tab_profile) {
-                    f = new Profile();
-                }
                 if (tabId == R.id.tab_logs) {
                     f = new Logs();
                 }
@@ -70,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements Exercise.Exercise
     }
 
     public void loadVideo(int i){
-        video vid = (video) getSupportFragmentManager().findFragmentById(R.id.frame);
+        video vid = (video) getSupportFragmentManager().findFragmentByTag("vid");
         vid.setVideo(i);
     }
 

@@ -53,8 +53,9 @@ public class Exercise extends Fragment {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                         Fragment f = new Fragment();
                         f = new video();
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
-                        //activityCommander.loadVideo(position);
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, f, "vid").commit();
+                        getActivity().getSupportFragmentManager().executePendingTransactions();
+                        activityCommander.loadVideo(position);
                     }
                 }
         );
