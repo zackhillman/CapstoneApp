@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.CalendarView.OnDateChangeListener;
 import android.widget.TextView;
@@ -26,6 +27,9 @@ public class Logs extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_logs,container,false);
         CalendarView calendar = (CalendarView) v.findViewById(R.id.calendar1);
+
+        Button button1 = (Button)v.findViewById(R.id.saveButton);
+
         final TextView eventText = (TextView)v.findViewById(R.id.eventText);
         final HashMap<String,String> eventMap = new HashMap<String,String>();
         eventMap.put("5/15/2017","Test Event");
