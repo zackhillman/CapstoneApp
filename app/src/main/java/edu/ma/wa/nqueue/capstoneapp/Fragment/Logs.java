@@ -26,18 +26,18 @@ public class Logs extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_logs,container,false);
-        CalendarView calendar = (CalendarView) v.findViewById(R.id.calendar1);
+        final CalendarView calendar = (CalendarView) v.findViewById(R.id.calendar1);
 
-        Button button1 = (Button)v.findViewById(R.id.saveButton);
+        final Button saveButton = (Button)v.findViewById(R.id.saveButton);
 
         final TextView eventText = (TextView)v.findViewById(R.id.eventText);
-        final HashMap<String,String> eventMap = new HashMap<String,String>();
+        final HashMap<String,CharSequence> eventMap = new HashMap<String,CharSequence>();
         eventMap.put("5/15/2017","Test Event");
 
         calendar.setOnDateChangeListener(new OnDateChangeListener() {
              @Override
              public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
-                 String dateString = (month+1)+"/"+day+"/"+year;
+                 final String dateString = (month+1)+"/"+day+"/"+year;
                  Toast.makeText(getActivity().getApplicationContext(), dateString, Toast.LENGTH_LONG).show();
                  if(eventMap.get(dateString)!=null){
                      eventText.setText(eventMap.get(dateString));
@@ -45,8 +45,21 @@ public class Logs extends Fragment {
                  else{
                      eventText.setText("");
                  }
+                 saveButton.setOnClickListener(new View.OnClickListener() {
+                     @Override
+                     public void onClick(View view) {
+                         eventMap.put(dateString,eventText.getText());
+                     }
+                 });
              }
          });
+
+
+
+//        public void buttonOnClick(View v){
+//            if((Button) v == saveButton){
+//
+//            }
         return v;
     }
 
