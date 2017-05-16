@@ -12,6 +12,8 @@ import android.widget.CalendarView.OnDateChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import edu.ma.wa.nqueue.capstoneapp.R;
@@ -32,15 +34,26 @@ public class Logs extends Fragment {
 
         final TextView eventText = (TextView)v.findViewById(R.id.eventText);
         final HashMap<String,CharSequence> eventMap = new HashMap<String,CharSequence>();
-        eventMap.put("5/15/2017","Test Event");
+        eventMap.put("05/15/2017","Test Event");
+        final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        String currentDate = sdf.format(new Date(calendar.getDate()));
+        eventText.setText(eventMap.get(currentDate));
+        if(eventMap.get(currentDate)!=null){
+            eventText.setText(eventMap.get(currentDate));
+        }
+        else{
+            eventText.setText("");
+            Toast.makeText(getActivity().getApplicationContext(), currentDate, Toast.LENGTH_LONG).show();
+        }
+
 
         calendar.setOnDateChangeListener(new OnDateChangeListener() {
              @Override
              public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
-                 final String dateString = (month+1)+"/"+day+"/"+year;
-                 Toast.makeText(getActivity().getApplicationContext(), dateString, Toast.LENGTH_LONG).show();
-                 if(eventMap.get(dateString)!=null){
-                     eventText.setText(eventMap.get(dateString));
+                 final String selectedDate = sdf.format(new Date(calendar.getDate()));
+                 Toast.makeText(getActivity().getApplicationContext(), selectedDate, Toast.LENGTH_LONG).show();
+                 if(eventMap.get(selectedDate)!=null){
+                     eventText.setText(eventMap.get(selectedDate));
                  }
                  else{
                      eventText.setText("");
@@ -48,18 +61,12 @@ public class Logs extends Fragment {
                  saveButton.setOnClickListener(new View.OnClickListener() {
                      @Override
                      public void onClick(View view) {
-                         eventMap.put(dateString,eventText.getText());
+                         eventMap.put(selectedDate,eventText.getText());
                      }
                  });
              }
          });
 
-
-
-//        public void buttonOnClick(View v){
-//            if((Button) v == saveButton){
-//
-//            }
         return v;
     }
 
