@@ -76,9 +76,9 @@ public class Exercises {
 
     public static ExerciseStep[] tutList = new ExerciseStep[]{pushup, situp, burpee, squat, plank, vup, pullup, biceptcurl, deadlift, rows};
     public static String[] linkList = new String[]{
-            "DoCWeUBA0Gs", "t2b8UdqmlFs", "VmB1G1K7v94", "DoCWeUBA0Gs",
-            "DoCWeUBA0Gs", "DoCWeUBA0Gs", "DoCWeUBA0Gs", "DoCWeUBA0Gs",
-            "DoCWeUBA0Gs", "DoCWeUBA0Gs"
+            "SzWwcOdeQJs", "aLwQ4HDXN2M", "WGkDsQ4DE38", "uo5koUNWuk4",
+            "G0B-_UDIeFE", "V6Ix4wv_s8g", "W7rCsNaLsrc", "pRlSZYUWhw8",
+            "lEbKk8ifnJw", "epiAd4OAl2I"
     };
 }
 
