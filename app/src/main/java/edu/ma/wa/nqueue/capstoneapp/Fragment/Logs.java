@@ -43,27 +43,29 @@ public class Logs extends Fragment {
         }
         else{
             eventText.setText("");
-            Toast.makeText(getActivity().getApplicationContext(), currentDate, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity().getApplicationContext(), currentDate, Toast.LENGTH_LONG).show();
         }
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final String selectedDate = sdf.format(new Date(calendar.getDate()));
+                eventMap.put(selectedDate,eventText.getText());
+            }
+        });
 
 
         calendar.setOnDateChangeListener(new OnDateChangeListener() {
              @Override
              public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
                  final String selectedDate = sdf.format(new Date(calendar.getDate()));
-                 Toast.makeText(getActivity().getApplicationContext(), selectedDate, Toast.LENGTH_LONG).show();
+                 //Toast.makeText(getActivity().getApplicationContext(), selectedDate, Toast.LENGTH_LONG).show();
                  if(eventMap.get(selectedDate)!=null){
                      eventText.setText(eventMap.get(selectedDate));
                  }
                  else{
                      eventText.setText("");
                  }
-                 saveButton.setOnClickListener(new View.OnClickListener() {
-                     @Override
-                     public void onClick(View view) {
-                         eventMap.put(selectedDate,eventText.getText());
-                     }
-                 });
+
              }
          });
 
