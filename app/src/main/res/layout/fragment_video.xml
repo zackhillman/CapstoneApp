@@ -21,7 +21,8 @@
         <ListView
             android:id="@+id/liststeps"
             android:layout_width="match_parent"
-            android:layout_height="194dp"></ListView>
+            android:layout_height="234dp"
+            android:layout_weight="0.22"></ListView>
 
 
     </LinearLayout>
