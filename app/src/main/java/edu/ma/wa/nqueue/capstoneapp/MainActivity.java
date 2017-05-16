@@ -4,6 +4,7 @@ import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -28,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements Exercise.Exercise
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
 
 
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements Exercise.Exercise
         MobileAds.initialize(getApplicationContext(), "ca-app-pub-1018669573856883/9774887054");
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        //mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);
     }
 
     public void loadVideo(int i){

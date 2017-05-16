@@ -44,7 +44,7 @@ public class Exercise extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_exercise,container,false);
-        String[] workout = {"Preacher Curl", "Squats", "Dumbbell Bench Press"};
+        String[] workout = {"Push Ups", "Sit Ups", "Burpees", "Squats", "Planks", "V Ups", "Pull Ups", "Bicep Curls", "Deadlifts", "Bent Over Rows"};
         ListAdapter adapt = new exerciselistAdapter(getActivity(), workout);
         ListView listview = (ListView) v.findViewById(R.id.list);
         listview.setAdapter(adapt);

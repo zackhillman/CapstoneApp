@@ -4,41 +4,40 @@
     android:layout_height="match_parent"
     >
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="1">
+        android:layout_height="match_parent">
 
-        <CalendarView
-            android:id="@+id/calendar1"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"></CalendarView>
-
-        <EditText
-            android:id="@+id/eventText"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="50dp"
-            android:ems="10"
-            android:hint="Enter event here"
-            android:inputType="textPersonName"
-            android:text="" />
+            android:orientation="vertical"
+            android:weightSum="1">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            <CalendarView
+                android:id="@+id/calendar1"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"></CalendarView>
+            
+            <EditText
+                android:id="@+id/eventText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter event here"
+                android:inputType="textMultiLine"
+                android:paddingTop="50dp"
+                android:text="" />
 
             <Button
                 android:id="@+id/saveButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Save event" />
-        </ScrollView>
 
 
-
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 
 </FrameLayout>

@@ -41,7 +41,7 @@ public class Friend extends Fragment {
                         if (position == 1) {
                             f = new Gym();
                         }
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.friendframe, f).commit();
                     }
                 }
         );
