@@ -106,20 +106,6 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
         mGoogleMap = googleMap;
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-        currentLocation = new LatLng(42.570456, -71.419234);
-
-        LatLng boost = new LatLng(42.570456, -71.419234);
-        LatLng koko = new LatLng(42.566434, -71.422394);
-        LatLng westfit = new LatLng(42.578005, -71.396997);
-        LatLng regency = new LatLng(42.563796, -71.430486);
-        LatLng fitnessTogether = new LatLng(42.554261, -71.447419);
-
-        googleMap.addMarker(new MarkerOptions().position(boost).title("Boost Fitness"));
-        googleMap.addMarker(new MarkerOptions().position(koko).title("Koko FitClub"));
-        googleMap.addMarker(new MarkerOptions().position(westfit).title("WestFit"));
-        googleMap.addMarker(new MarkerOptions().position(regency).title("Westford Regency"));
-        googleMap.addMarker(new MarkerOptions().position(fitnessTogether).title("Fitness Together"));
-
        if(ActivityCompat.checkSelfPermission(this.getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, PackageManager.PERMISSION_GRANTED); // if the permission wasn't granted so ask for permission
             return;
@@ -131,11 +117,8 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
 
         googleMap.setMyLocationEnabled(true);
 
-        //mLatitude = currentLocation.latitude;
-        //mLongitude = currentLocation.longitude;
-
-        mLatitude = 42.570456;
-        mLongitude = -71.419234;
+        mLatitude = currentLocation.latitude;
+        mLongitude = currentLocation.longitude;
 
         LocationManager locationManager = (LocationManager) this.getActivity().getSystemService(this.getActivity().LOCATION_SERVICE);
 
@@ -147,8 +130,6 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
         sb.append("&types="+mPlaceType);
         sb.append("&sensor=true");
         sb.append("&key=AIzaSyDOwxlkH52mv1OcoI7FlI999r7v7TYPFpg");
-
-        System.out.println(sb.toString());
 
         PlacesTask placesTask = new PlacesTask();
         placesTask.execute(sb.toString());
