@@ -2,6 +2,7 @@ package edu.ma.wa.nqueue.capstoneapp.Fragment.Maps;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -63,7 +65,6 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
     private View mView;
 
     private LatLng currentLocation;
-    private double mLatitude=0, mLongitude=0;
 
 
     public static final String BASE_URL = "https://thawing-tundra-28436.herokuapp.com/services/";
@@ -104,23 +105,34 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
         MapsInitializer.initialize(getContext());
 
         mGoogleMap = googleMap;
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
         currentLocation = new LatLng(42.570456, -71.419234);
 
-        LatLng boost = new LatLng(42.570456, -71.419234);
-        LatLng koko = new LatLng(42.566434, -71.422394);
-        LatLng westfit = new LatLng(42.578005, -71.396997);
-        LatLng regency = new LatLng(42.563796, -71.430486);
-        LatLng fitnessTogether = new LatLng(42.554261, -71.447419);
+        LocationManager locationManager = (LocationManager) this.getActivity().getSystemService(this.getActivity().LOCATION_SERVICE);
 
-        googleMap.addMarker(new MarkerOptions().position(boost).title("Boost Fitness"));
-        googleMap.addMarker(new MarkerOptions().position(koko).title("Koko FitClub"));
-        googleMap.addMarker(new MarkerOptions().position(westfit).title("WestFit"));
-        googleMap.addMarker(new MarkerOptions().position(regency).title("Westford Regency"));
-        googleMap.addMarker(new MarkerOptions().position(fitnessTogether).title("Fitness Together"));
+        Criteria criteria = new Criteria();
+        String provider;
+        provider = locationManager.getBestProvider(criteria, true);
+        Location myLocation = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
 
-       if(ActivityCompat.checkSelfPermission(this.getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+        currentLocation = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
+
+        StringBuilder sb = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+
+        System.out.println("LATITUDE: " + currentLocation.latitude + "LONGITUDE: " + currentLocation.longitude);
+        sb.append("location="+currentLocation.latitude+","+currentLocation.longitude);
+        sb.append("&radius=10000");
+        sb.append("&types="+mPlaceType);
+        sb.append("&sensor=true");
+        sb.append("&key=AIzaSyDOwxlkH52mv1OcoI7FlI999r7v7TYPFpg");
+        PlacesTask placesTask = new PlacesTask();
+        placesTask.execute(sb.toString());
+
+        CameraPosition camera = CameraPosition.builder().target(currentLocation).zoom(16).bearing(0).tilt(45).build();
+        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
+
+        if(ActivityCompat.checkSelfPermission(this.getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, PackageManager.PERMISSION_GRANTED); // if the permission wasn't granted so ask for permission
             return;
         }
@@ -128,51 +140,21 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PackageManager.PERMISSION_GRANTED);
             return;
         }
-
-        googleMap.setMyLocationEnabled(true);
-
-        //mLatitude = currentLocation.latitude;
-        //mLongitude = currentLocation.longitude;
-
-        mLatitude = 42.570456;
-        mLongitude = -71.419234;
-
-        LocationManager locationManager = (LocationManager) this.getActivity().getSystemService(this.getActivity().LOCATION_SERVICE);
-
-        StringBuilder sb = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
-
-        System.out.println("LATITUDE: " + mLatitude + "LONGITUDE: " + mLongitude);
-        sb.append("location="+mLatitude+","+mLongitude);
-        sb.append("&radius=5000");
-        sb.append("&types="+mPlaceType);
-        sb.append("&sensor=true");
-        sb.append("&key=AIzaSyDOwxlkH52mv1OcoI7FlI999r7v7TYPFpg");
-
-        System.out.println(sb.toString());
-
-        PlacesTask placesTask = new PlacesTask();
-        placesTask.execute(sb.toString());
-
-
-
-        CameraPosition camera = CameraPosition.builder().target(currentLocation).zoom(16).bearing(0).tilt(45).build();
-        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
-
+        mGoogleMap.setMyLocationEnabled(true);
+        //googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
 
     }
 
     @Override
     public void onLocationChanged(Location location) {
-        double latitude = location.getLatitude();
+       /*double latitude = location.getLatitude();
         double longitude = location.getLongitude();
         currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
 
         StringBuilder sb = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
 
-        mLatitude = latitude;
-        mLongitude = longitude;
 
-        System.out.println("LATITUDE: " + latitude + "LONGITUDE: " + mLongitude);
+        System.out.println("LATITUDE: " + latitude + "LONGITUDE: " + currentLocation.longitude);
         sb.append("location="+latitude+","+longitude);
         sb.append("&radius=5000");
         sb.append("&types="+mPlaceType);
@@ -186,6 +168,7 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
 
         CameraPosition camera = CameraPosition.builder().target(currentLocation).zoom(16).bearing(0).tilt(45).build();
         mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
+        */
     }
 
     /** Receives a JSONObject and returns a list */
@@ -339,6 +322,19 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
 
     }
 
+    public void enableLocation(){
+        if(ActivityCompat.checkSelfPermission(this.getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, PackageManager.PERMISSION_GRANTED); // if the permission wasn't granted so ask for permission
+            return;
+        }
+        if(ActivityCompat.checkSelfPermission(this.getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PackageManager.PERMISSION_GRANTED);
+            return;
+        }
+        mGoogleMap.setMyLocationEnabled(true);
+        mGoogleMap.getUiSettings().setMyLocationButtonEnabled(true);
+    }
+
     private class ParserTask extends AsyncTask<String, Integer, List<HashMap<String,String>>>{
 
         JSONObject jObject;
@@ -367,8 +363,8 @@ public class Gym extends Fragment implements OnMapReadyCallback, LocationListene
         protected void onPostExecute(List<HashMap<String,String>> list){
 
             // Clears all the existing markers
-            mGoogleMap.clear();
-
+            //mGoogleMap.clear();
+            enableLocation();
             for(int i=0;i<list.size();i++){
 
                 // Creating a marker
