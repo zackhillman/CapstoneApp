@@ -45,7 +45,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Logs extends Fragment {
 
     public static final String BASE_URL = "https://thawing-tundra-28436.herokuapp.com/services/";
-    public String selectedDate;
+    private String selectedDate;
+    private TextView eventText;
 
     private Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -57,82 +58,58 @@ public class Logs extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_logs,container,false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-
         final CalendarView calendar = (CalendarView) v.findViewById(R.id.calendar1);
-
         final Button saveButton = (Button)v.findViewById(R.id.saveButton);
-
-        final TextView eventText = (TextView)v.findViewById(R.id.eventText);
-       // final HashMap<String,CharSequence> eventMap = new HashMap<String,CharSequence>();
-        
-    //    eventMap.put("05/15/2017","Test Event");
+        eventText = (TextView)v.findViewById(R.id.eventText);
         final SimpleDateFormat sdf = new SimpleDateFormat("MMddyyyy");
         String currentDate = sdf.format(new Date(calendar.getDate()));
         selectedDate = sdf.format(new Date(calendar.getDate()));
-
-
-
-
-
-
-
-
+        read();
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             //   eventMap.put(selectedDate,eventText.getText());
-
-
             try {
                 FileOutputStream fos = getActivity().openFileOutput(selectedDate, Context.MODE_PRIVATE);
                 fos.write(eventText.getText().toString().getBytes());
                 fos.close();
          //       getActivity().fileList();
             }catch (Exception e){
-
             }
-
-
             }
         });
-
 
         calendar.setOnDateChangeListener(new OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
                 DecimalFormat df = new DecimalFormat("00");
                 selectedDate = df.format(month+1) +"" + df.format(day)+""  + year;
-
-                StringBuffer datax = new StringBuffer("");
-                try {
-                    FileInputStream fIn = getActivity().openFileInput ( selectedDate ) ;
-                    InputStreamReader isr = new InputStreamReader ( fIn ) ;
-                    BufferedReader buffreader = new BufferedReader ( isr ) ;
-
-                    String readString = buffreader.readLine ( ) ;
-                    while ( readString != null ) {
-                        datax.append(readString);
-                        readString = buffreader.readLine ( ) ;
-                    }
-
-                    isr.close ( ) ;
-                    fIn.close();
-                } catch ( IOException ioe ) {
-                    ioe.printStackTrace ( ) ;
-                }
-                eventText.setText(datax.toString());
-
-
-                Toast.makeText(getActivity().getApplicationContext(), selectedDate, Toast.LENGTH_LONG).show();
-
-
+                read();
+                //Toast.makeText(getActivity().getApplicationContext(), selectedDate, Toast.LENGTH_LONG).show();
             }
         });
-
-
-
         return v;
+    }
+
+    public void read(){
+        StringBuffer datax = new StringBuffer("");
+        try {
+            FileInputStream fIn = getActivity().openFileInput ( selectedDate ) ;
+            InputStreamReader isr = new InputStreamReader ( fIn ) ;
+            BufferedReader buffreader = new BufferedReader ( isr ) ;
+
+            String readString = buffreader.readLine ( ) ;
+            while ( readString != null ) {
+                datax.append(readString);
+                readString = buffreader.readLine ( ) ;
+            }
+
+            isr.close ( ) ;
+            fIn.close();
+        } catch ( IOException ioe ) {
+            ioe.printStackTrace ( ) ;
+        }
+        eventText.setText(datax.toString());
     }
 
 }
