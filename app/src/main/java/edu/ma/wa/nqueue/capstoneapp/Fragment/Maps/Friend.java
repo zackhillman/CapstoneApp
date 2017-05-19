@@ -2,6 +2,9 @@ package edu.ma.wa.nqueue.capstoneapp.Fragment.Maps;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -92,7 +95,21 @@ public class Friend extends Fragment implements OnMapReadyCallback{
             return;
         }
 
-        currentLocation = new LatLng(42.577716, -71.463516);
+        LocationManager locationManager = (LocationManager) this.getActivity().getSystemService(this.getActivity().LOCATION_SERVICE);
+
+        Criteria criteria = new Criteria();
+        String provider;
+        provider = locationManager.getBestProvider(criteria, true);
+        Location myLocation = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+
+        currentLocation = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
+
+        CameraPosition camera = CameraPosition.builder().target(currentLocation).zoom(16).bearing(0).tilt(45).build();
+        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
+
+        googleMap.setMyLocationEnabled(true);
+
+        //currentLocation = new LatLng(42.577716, -71.463516);
         LatLng andrewmLoc = new LatLng(42.580779, -71.438177);
         LatLng zackLoc = new LatLng(42.545363, -71.401021);
         LatLng derenLoc = new LatLng(42.557553, -71.462112);
@@ -107,7 +124,7 @@ public class Friend extends Fragment implements OnMapReadyCallback{
         googleMap.addMarker(new MarkerOptions().position(benLoc).title("Ben Pazienza"));
         googleMap.addMarker(new MarkerOptions().position(andrewLoc).title("Andrew Hartnett"));
 
-        CameraPosition camera = CameraPosition.builder().target(currentLocation).zoom(16).bearing(0).tilt(45).build();
-        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
+        //CameraPosition camera = CameraPosition.builder().target(currentLocation).zoom(16).bearing(0).tilt(45).build();
+        //googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
     }
 }
