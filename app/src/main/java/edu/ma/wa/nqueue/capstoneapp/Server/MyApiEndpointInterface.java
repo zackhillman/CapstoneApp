@@ -23,6 +23,11 @@ public interface MyApiEndpointInterface {
     @GET("loc/{name}")
     Call<ResponseBody> getLoc(@Path("name") String name);
 
+    @Headers({"Content-Type:application/json" })
+    @GET("log/{date}")
+    Call<ResponseBody> getLog(@Path("date") String date);
+
+
     @GET("group/{id}/users")
     Call<List<ResponseBody>> groupList(@Path("id") int groupId, @Query("sort") String sort);
 
