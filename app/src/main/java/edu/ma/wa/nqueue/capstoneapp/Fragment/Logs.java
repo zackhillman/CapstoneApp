@@ -45,7 +45,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Logs extends Fragment {
 
     public static final String BASE_URL = "https://thawing-tundra-28436.herokuapp.com/services/";
-
+    public String selectedDate;
 
     private Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -64,13 +64,11 @@ public class Logs extends Fragment {
 
         final TextView eventText = (TextView)v.findViewById(R.id.eventText);
        // final HashMap<String,CharSequence> eventMap = new HashMap<String,CharSequence>();
-
-
-
+        
     //    eventMap.put("05/15/2017","Test Event");
         final SimpleDateFormat sdf = new SimpleDateFormat("MMddyyyy");
         String currentDate = sdf.format(new Date(calendar.getDate()));
-
+        selectedDate = sdf.format(new Date(calendar.getDate()));
 
 
 
@@ -83,7 +81,6 @@ public class Logs extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String selectedDate = sdf.format(new Date(calendar.getDate()));
              //   eventMap.put(selectedDate,eventText.getText());
 
 
@@ -105,7 +102,7 @@ public class Logs extends Fragment {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
                 DecimalFormat df = new DecimalFormat("00");
-                final String selectedDate = df.format(month+1) +"" + df.format(day)+""  + year;
+                selectedDate = df.format(month+1) +"" + df.format(day)+""  + year;
 
                 StringBuffer datax = new StringBuffer("");
                 try {
@@ -127,7 +124,7 @@ public class Logs extends Fragment {
                 eventText.setText(datax.toString());
 
 
-                //Toast.makeText(getActivity().getApplicationContext(), selectedDate, Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity().getApplicationContext(), selectedDate, Toast.LENGTH_LONG).show();
 
 
             }
