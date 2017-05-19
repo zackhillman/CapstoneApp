@@ -20,10 +20,19 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import edu.ma.wa.nqueue.capstoneapp.Fragment.video;
 import edu.ma.wa.nqueue.capstoneapp.R;
+import edu.ma.wa.nqueue.capstoneapp.Server.MyApiEndpointInterface;
+import edu.ma.wa.nqueue.capstoneapp.Server.MyLocation;
 import edu.ma.wa.nqueue.capstoneapp.exerciselistAdapter;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Josh on 5/5/2017.
@@ -36,6 +45,14 @@ public class Friend extends Fragment implements OnMapReadyCallback{
     private View mView;
     private LatLng currentLocation;
 
+    public static final String BASE_URL = "https://thawing-tundra-28436.herokuapp.com/services/";
+
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+
+
 
     @Nullable
     @Override
@@ -47,6 +64,8 @@ public class Friend extends Fragment implements OnMapReadyCallback{
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
 
         mMapView = (MapView) mView.findViewById(R.id.mapfriend);
         if (mMapView != null) {
@@ -73,7 +92,20 @@ public class Friend extends Fragment implements OnMapReadyCallback{
             return;
         }
 
-        currentLocation = new LatLng(42.570456, -71.419234);
+        currentLocation = new LatLng(42.577716, -71.463516);
+        LatLng andrewmLoc = new LatLng(42.580779, -71.438177);
+        LatLng zackLoc = new LatLng(42.545363, -71.401021);
+        LatLng derenLoc = new LatLng(42.557553, -71.462112);
+        LatLng tahaLoc = new LatLng(42.570456, -71.419234);
+        LatLng benLoc = new LatLng(42.600383, -71.489186);
+        LatLng andrewLoc = new LatLng(42.565836, -71.425987);
+
+        googleMap.addMarker(new MarkerOptions().position(andrewmLoc).title("Andrew Markoski"));
+        googleMap.addMarker(new MarkerOptions().position(zackLoc).title("Zack Hillman"));
+        googleMap.addMarker(new MarkerOptions().position(derenLoc).title("Deren Singh"));
+        googleMap.addMarker(new MarkerOptions().position(tahaLoc).title("Taha Rangwala"));
+        googleMap.addMarker(new MarkerOptions().position(benLoc).title("Ben Pazienza"));
+        googleMap.addMarker(new MarkerOptions().position(andrewLoc).title("Andrew Hartnett"));
 
         CameraPosition camera = CameraPosition.builder().target(currentLocation).zoom(16).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
