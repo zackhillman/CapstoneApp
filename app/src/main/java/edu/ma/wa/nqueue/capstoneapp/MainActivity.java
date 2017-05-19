@@ -4,6 +4,7 @@ import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.google.android.gms.ads.AdRequest;
@@ -45,15 +46,19 @@ public class MainActivity extends AppCompatActivity implements Exercise.Exercise
                 Fragment f = new Fragment();
                 if (tabId == R.id.tab_logs) {
                     f = new Logs();
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                 }
                 if (tabId == R.id.tab_friends) {
                     f = new Map();
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                 }
                 if (tabId == R.id.tab_exercise) {
                     f = new Exercise();
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                 }
                 if (tabId == R.id.tab_about) {
                     f = new About();
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
             }
@@ -66,9 +71,11 @@ public class MainActivity extends AppCompatActivity implements Exercise.Exercise
     }
 
     public void loadVideo(int i){
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         video vid = (video) getSupportFragmentManager().findFragmentByTag("vid");
         vid.setVideo(i);
     }
+
 
 
     public void displayInterstitial() {
@@ -76,6 +83,20 @@ public class MainActivity extends AppCompatActivity implements Exercise.Exercise
         if (interstitial.isLoaded()) {
            interstitial.show();
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            Fragment f = new Fragment();
+            f = new Exercise();
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override    public void onBackPressed() {

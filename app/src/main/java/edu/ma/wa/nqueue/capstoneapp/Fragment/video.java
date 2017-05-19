@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +45,8 @@ public class video extends Fragment implements YouTubePlayer.OnInitializedListen
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_video,container,false);
         view = v;
+
+
         YouTubePlayerSupportFragment youtubePlayerFragment = new YouTubePlayerSupportFragment();
         youtubePlayerFragment.initialize(YOUTUBE_API_KEY, this);
         FragmentManager fragmentManager = getFragmentManager();

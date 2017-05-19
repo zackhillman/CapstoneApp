@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="14618.79"
-                android:text="      NQueue is a group of student programmers from Westford Academy created on the Capstone program. Our group consists of Andrew Hartnett, Joshua Vasilevsky, Taha Rangwala, Andrew Markoski, Benjamin Pazienza, Zachary Hillman, and Deren Singh, with Newman Shee as NQueue's capstone supervisor.\nFlex Fit is our final project for the Capstone experience."
+                android:text="NQueue is a group of student programmers from Westford Academy created on the Capstone program. Our group consists of Andrew Hartnett, Joshua Vasilevsky, Taha Rangwala, Andrew Markoski, Benjamin Pazienza, Zachary Hillman, and Deren Singh, with Newman Shee as NQueue's capstone supervisor. Flex Fit is our final project for the Capstone experience."
                 android:textColor="#000000" />
 
         </LinearLayout>
