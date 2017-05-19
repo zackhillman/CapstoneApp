@@ -1,6 +1,8 @@
 package edu.ma.wa.nqueue.capstoneapp;
 
+import android.content.Context;
 import android.support.annotation.IdRes;
+import android.support.multidex.MultiDex;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements Exercise.Exercise
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
 
         //StartAppSDK.init(this, "Your app Id", true);
